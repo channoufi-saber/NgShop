@@ -4,6 +4,7 @@ const morgan=require('morgan')
 const mongoose=require('mongoose');
 const { Product } = require('./models/product');
 const productsRouter=require('./routers/products')
+const categoriesRouter=require('./routers/categories')
 const cors=require('cors')
 require('dotenv/config')
 app.use(express.json())
@@ -14,7 +15,8 @@ app.options('*',cors())
 
 
 
-app.use(`${api}/products`,productsRouter)
+app.use(`${api}/products`,productsRouter);
+app.use(`${api}/categories`,categoriesRouter);
 
 mongoose.connect('mongodb://127.0.0.1:27017/eshop-database').then(()=>{
     console.log('database connected...')
