@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
-import { HeaderComponent } from "../../shared/header/header.component";
-import { FooterComponent } from "../../shared/footer/footer.component";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-home-page',
-  imports: [HeaderComponent, FooterComponent],
+  selector: 'ngshop-home-page',
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css'
+  styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
+  constructor() {}
 
+  ngOnInit(): void {}
 }
