@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
 });
 const uploadOptions = multer({ storage: storage });
 
-router.get("/", async (req, res) => {
+router.get("/", async (req, res) => { 
   let filter = {};
   if (req.query.categories) {
     filter = { category: req.query.categories.split(",") };
@@ -36,6 +36,7 @@ router.get("/", async (req, res) => {
   if (!productList) {
     res.status(500).json({ success: false });
   }
+  console.log(productList.map(p => p.image));
   res.send(productList);
 });
 
@@ -57,7 +58,7 @@ router.post("/", uploadOptions.single("image"), async (req, res) => {
     return res.status(400).send("No image in the request");
   }
   const fileName = req.file.filename;
-  const basePath = `${req.protocol}://${req.get("host")}/public/upload`;
+  const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
   let product = new Product({
     name: req.body.name,
     description: req.body.description,

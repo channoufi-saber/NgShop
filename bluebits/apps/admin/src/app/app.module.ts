@@ -23,7 +23,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import {ColorPickerModule} from 'primeng/colorpicker'
+import {ColorPickerModule} from 'primeng/colorpicker';
+import { ProductsListComponent } from './pages/products/products-list/products-list.component';
+import { ProductsFormComponent } from './pages/products/products-form/products-form.component'
+import { InputNumberModule } from 'primeng/inputnumber';
+import {InputTextareaModule} from 'primeng/inputtextarea'
+import {InputSwitchModule} from 'primeng/inputswitch'
+import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
+import { ImageModule } from 'primeng/image';
 
 
 const routes:Routes=[
@@ -32,22 +40,31 @@ const routes:Routes=[
     {path:'categories',component:CategoriesListComponent},
     {path:'categories/form',component:CategoriesFormComponent},
     {path:'categories/form/:id',component:CategoriesFormComponent},
+    {path:'products',component:ProductsListComponent},
+    {path:'products/form',component:ProductsFormComponent},
+    {path:'products/form/:id',component:ProductsFormComponent},
   
   ]}
 ]
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent],
+  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CardModule,
     ToolbarModule,
+    EditorModule,
     ButtonModule,
+    DropdownModule,
     ConfirmDialogModule,
+    InputTextareaModule,
+    ImageModule,
+    InputSwitchModule,
     TableModule,
     ToastModule,
     ColorPickerModule,
     InputTextModule,
+    InputNumberModule,
     MessagesModule,
     FormsModule,
     ReactiveFormsModule,
