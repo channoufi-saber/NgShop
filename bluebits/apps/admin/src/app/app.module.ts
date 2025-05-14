@@ -32,6 +32,12 @@ import {InputSwitchModule} from 'primeng/inputswitch'
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { ImageModule } from 'primeng/image';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+import { TagModule } from 'primeng/tag';
+import { InputMaskModule } from 'primeng/inputmask';
+import { UsersService } from '@bluebits/users';
+
 
 
 const routes:Routes=[
@@ -43,22 +49,37 @@ const routes:Routes=[
     {path:'products',component:ProductsListComponent},
     {path:'products/form',component:ProductsFormComponent},
     {path:'products/form/:id',component:ProductsFormComponent},
+    {
+        path: 'users',
+        component: UsersListComponent
+      },
+      {
+        path: 'users/form',
+        component: UsersFormComponent
+      },
+      {
+        path: 'users/form/:id',
+        component: UsersFormComponent
+      }
   
   ]}
 ]
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent],
+  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent, 
+    ProductsListComponent, ProductsFormComponent,UsersListComponent,UsersFormComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CardModule,
     ToolbarModule,
     EditorModule,
+    InputMaskModule,
     ButtonModule,
     DropdownModule,
     ConfirmDialogModule,
     InputTextareaModule,
     ImageModule,
+     TagModule,
     InputSwitchModule,
     TableModule,
     ToastModule,
@@ -71,7 +92,7 @@ const routes:Routes=[
     HttpClientModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [CategoriesService,MessageService,ConfirmationService],
+  providers: [CategoriesService,MessageService,ConfirmationService,UsersService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
