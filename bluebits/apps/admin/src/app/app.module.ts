@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -36,14 +36,14 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { TagModule } from 'primeng/tag';
 import { InputMaskModule } from 'primeng/inputmask';
-import { UsersService } from '@bluebits/users';
+import { AuthGuard, JwtInterceptor, UsersModule, UsersService } from '@bluebits/users';
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
 import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
 import { FieldsetModule } from 'primeng/fieldset';
 
 
 const routes:Routes=[
-  {path:'',component:ShellComponent,children:[
+  {path:'',component:ShellComponent,canActivate:[AuthGuard],children:[
     {path:'dashboard',component:DashboardComponent},
     {path:'categories',component:CategoriesListComponent},
     {path:'categories/form',component:CategoriesFormComponent},
@@ -66,11 +66,11 @@ const routes:Routes=[
           {path:'orders',component:OrdersListComponent},
           {path:'orders/:id',component:OrdersDetailComponent},
 
-  
+
   ]}
 ]
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent, 
+  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent,
     ProductsListComponent, ProductsFormComponent,UsersListComponent,UsersFormComponent, OrdersListComponent, OrdersDetailComponent],
   imports: [
     BrowserModule,
@@ -95,10 +95,13 @@ const routes:Routes=[
     MessagesModule,
     FormsModule,
     ReactiveFormsModule,
+    UsersModule,
     HttpClientModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [CategoriesService,MessageService,ConfirmationService,UsersService],
+  providers: [CategoriesService,MessageService,ConfirmationService,UsersService,
+    {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
