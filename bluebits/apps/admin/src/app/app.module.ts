@@ -42,9 +42,10 @@ import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detai
 import { FieldsetModule } from 'primeng/fieldset';
 
 
+
 const routes:Routes=[
   {path:'',component:ShellComponent,canActivate:[AuthGuard],children:[
-    {path:'dashboard',component:DashboardComponent},
+    {path:'',component:DashboardComponent},
     {path:'categories',component:CategoriesListComponent},
     {path:'categories/form',component:CategoriesFormComponent},
     {path:'categories/form/:id',component:CategoriesFormComponent},
@@ -67,13 +68,14 @@ const routes:Routes=[
           {path:'orders/:id',component:OrdersDetailComponent},
 
 
-  ]}
+  ]},
+  {path:'**',redirectTo:'',pathMatch:'full'}
 ]
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent,
     ProductsListComponent, ProductsFormComponent,UsersListComponent,UsersFormComponent, OrdersListComponent, OrdersDetailComponent],
   imports: [
-    BrowserModule,
+  BrowserModule,
     BrowserAnimationsModule,
     CardModule,
     ToolbarModule,

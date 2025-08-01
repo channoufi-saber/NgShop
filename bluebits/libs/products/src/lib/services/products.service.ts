@@ -34,4 +34,12 @@ export class ProductsService {
   deleteCategory(categoryId:string):Observable<Object>{
     return this.http.delete<Object>(`${this.baseUrl}/${categoryId}`);
   }
+
+  // getProductsCount():Observable<number>{
+  //   return this.http.get<number>(`${this.baseUrl}/get/count`).pipe(map((objectValue:any)=>objectValue.productCount))
+  // }
+
+   getFeaturedProducts(count:number):Observable<Product[]>{
+    return this.http.get<Product[]>(`${this.baseUrl}/get/featured/${count}`)
+  }
 }
